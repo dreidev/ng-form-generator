@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Form</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title">
+    <link rel="stylesheet" href="app.css" media="screen" title="no title">
+    <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+    <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js" charset="utf-8"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js" charset="utf-8"></script>
+</head>
+
+<body ng-app="app" ng-controller="SimpleDemoController">
+    <div class="flex simpleDemo">
+
+        <ul dnd-list="model.builder" class="builder">
+
+            <li ng-repeat="item1 in model.builder" dnd-draggable="item1" dnd-moved="model.builder.splice($index, 1)" dnd-effect-allowed="copy" dnd-selected="selected1 = item1" ng-class="{'selected': selected1 === item1}">
+                <div ng-html="item1.display" class="">
+
+                </div>
+
+            </li>
+        </ul>
+
+        <ul class="choices" dnd-list="choices">
+
+            <li ng-repeat="item2 in choices" dnd-draggable="item2" dnd-moved="choices.splice($index, 1)" dnd-effect-allowed="copy" dnd-selected="selected2 = item2" ng-class="{'selected': selected2 === item2}">
+                <div ng-html="item2.display" class="">
+
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="flex simpleDemo">
+        <div id="form-parent">
+            <form id="form" class="choices" ng-submit="submit()">
+                <input type="submit" name="name" value="">
+            </form>
+        </div>
+
+    </div>
+
+    </div>
+
+</body>
+
+</html>

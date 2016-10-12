@@ -1,0 +1,23 @@
+{
+  "name": "form-maker",
+  "authors": [
+    "Ahmed El Sayegh <ahmedelsayegh7@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-drag-and-drop-lists": "^1.4.0",
+    "angular-sanitize": "^1.5.8",
+    "bootstrap": "^3.3.7"
+  }
+}
