@@ -16,6 +16,8 @@
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js" charset="utf-8"></script>
     <!-- <script src="bower_components/angular/angular.js" charset="utf-8"></script> -->
     <script src="app.js" charset="utf-8"></script>
+    <script src="formBuilder.js" charset="utf-8"></script>
+    <script src="formReader.js" charset="utf-8"></script>
     <script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="tether.min.js" charset="utf-8"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
@@ -26,67 +28,8 @@
 
 <body ng-app="app" ng-controller="SimpleDemoController">
 
-    <div class="flex simpleDemo">
-
-        <ul dnd-list="model.builder" class="builder">
-
-            <li ng-repeat="item1 in model.builder" dnd-draggable="item1" dnd-moved="model.builder.splice($index, 1)" dnd-effect-allowed="copyMove" dnd-selected="selected1 = item1" ng-class="{'selected': selected1 === item1}">
-
-                <div ng-html="item1.display" class="">
-                </div>
-
-            </li>
-        </ul>
-
-        <ul class="choices" dnd-list="choices">
-
-            <li ng-repeat="item2 in choices" dnd-draggable="item2" dnd-moved="choices.splice($index, 1)" dnd-effect-allowed="copy" dnd-selected="selected2 = item2" ng-class="{'selected': selected2 === item2}">
-                <div ng-html="item2.display" class="">
-
-                </div>
-            </li>
-        </ul>
-
-        <ul class="choices trash" dnd-list="trash">
-
-            <li ng-repeat="item3 in trash" dnd-draggable="item3" dnd-nodrag dnd-moved="trash.splice($index, 1)" dnd-effect-allowed="" dnd-selected="selected2 = item3" ng-class="{'selected': selected2 === item3}">
-                <div ng-html="item3.display" class="">
-
-                </div>
-            </li>
-        </ul>
-    </div>
-
-
-    <!-- <div class="form-group">
-        <label for="" class="col-sm-4 control-label">Radio</label>
-        <div class="col-sm-8">
-            <div class="radio">
-                <label class=""><input name=""  validator-group="" value="value one" type="radio" class="">
-                    value one
-                </label>
-            </div>
-            <div class="radio">
-                <label class=""><input name="" validator-group="" value="value two" type="radio" class="">
-                    value two
-                </label>
-            </div>
-            <p class="help-block">description</p>
-        </div>
-    </div> -->
-
-
-    <div style="display:none;" ng-include src="'components/popoverTemplate.html'">
-    </div>
-    <div class="flex simpleDemo">
-        <div id="form-parent">
-            <form id="form" class="choices" ng-submit="form.$isValid && saveFormAsJson()">
-            </form>
-        </div>
-
-    </div>
-
-    </div>
+    <ng-form-builder output="output"></ng-form-builder>
+    <ng-form-reader input="output"></ng-form-builder>
 
 </body>
 
