@@ -1,8 +1,10 @@
 angular.module("app", ["dndLists", "ngSanitize", "ui.bootstrap"]);
 angular.module("app").controller("SimpleDemoController", function($compile, $scope, $sce) {
 
+
     //change default settings in this object
     $scope.emptyObject = {
+        type: "",
         value: "",
         required: false,
         title: "title here",
@@ -27,9 +29,10 @@ angular.module("app").controller("SimpleDemoController", function($compile, $sco
     $scope.choices = [{
         "label": 'input',
         "display": '<div class="form-group ng-scope"><label for="" class="col-sm-4 control-label ng-binding" >Text Input</label><div class="col-sm-8"><input type="text" disabled="disabled" ng-model="inputText" validator-required="false" validator-group="" id="" class="form-control ng-pristine ng-valid" placeholder="placeholder"><p class="help-block ng-binding">description</p></div></div>',
-    }, {
-        "label": 'submit',
-        "display": '<button class="btn btn-primary">Click</button>',
+    },
+    {
+        "label": 'radio',
+        "display": '<div class="form-group"> <label for="" class="col-sm-4 control-label">Radio</label> <div class="col-sm-8"> <div class="radio"> <label class=""><input name="" validator-group="" value="value one" type="radio" class=""> value one </label> </div> <div class="radio"> <label class=""><input name="" validator-group="" value="value two" type="radio" class=""> value two </label> </div> <p class="help-block">description</p> </div> </div>',
     }];
     $scope.submit = function() {
         for (var i = 0; i < $scope.model.builder.length; i++) {
@@ -52,20 +55,22 @@ angular.module("app").controller("SimpleDemoController", function($compile, $sco
         $compile(form)($scope);
         parent.appendChild(form);
 
-        for (var i = 0; i < $scope.model.builder.length; i++) {
-            $scope.render($scope.model.builder[i], i);
+        for (var i = 0; i < $scope.components.list.length; i++) {
+            $scope.render($scope.components.list[i], i);
         }
         $scope.render({
-            label: "submit"
+            type: "submit"
         }, $scope.model.builder.length);
         var myOptions = $scope.components.list;
     };
+
+
     oldlength = $scope.model.builder.length;
 
     $scope.$watch('model.builder.length', function(newValue, oldValue) {
-        if (oldlength < newValue){
-          var o2 = JSON.parse(JSON.stringify($scope.emptyObject));
-          $scope.components.list.push(o2);
+        if (oldlength < newValue) {
+            var o2 = JSON.parse(JSON.stringify($scope.emptyObject));
+            $scope.components.list.push(o2);
         }
         $scope.createForm();
     });
@@ -90,9 +95,9 @@ angular.module("app").controller("SimpleDemoController", function($compile, $sco
         //configuring outer div
         li.setAttribute("class", "simpleDemo");
         divOuter.setAttribute("uib-popover-template", "dynamicPopover.templateUrl");
-        divOuter.setAttribute("popover-title", "{{components.list["+index+"].title}}");
+        divOuter.setAttribute("popover-title", "Text Field");
         divOuter.setAttribute("popover-placement", "bottom-right");
-        divOuter.setAttribute("ng-click", "setGlobalIndex("+index+")");
+        divOuter.setAttribute("ng-click", "setGlobalIndex(" + index + ")");
 
         //configuring outer div
         // uib-popover-template="dynamicPopover.templateUrl" popover-title="{{components.list[$index].title}}" popover-placement="bottom-right"
@@ -108,9 +113,11 @@ angular.module("app").controller("SimpleDemoController", function($compile, $sco
         if (myOptions.required) {
             label.innerHTML += "*";
         }
-        $scope.general = {index:0};
-        $scope.setGlobalIndex = function (index) {
-          $scope.general.index = index;
+        $scope.general = {
+            index: 0
+        };
+        $scope.setGlobalIndex = function(index) {
+            $scope.general.index = index;
         };
         //configuring p
         p.setAttribute("class", "help-block");
@@ -145,14 +152,27 @@ angular.module("app").controller("SimpleDemoController", function($compile, $sco
         $compile(input)($scope);
         form.appendChild(input);
     };
+
+    $scope.makeRadioButton = function(form, specs, index) {
+        var input = document.createElement('input');
+        input.setAttribute("type", "radio");
+        input.setAttribute("name", "button");
+        input.setAttribute("class", "btn btn-primary");
+        input.setAttribute("ng-click", "createForm()");
+        $compile(input)($scope);
+        form.appendChild(input);
+    };
     $scope.render = function(value, index) {
         var form = document.getElementById('form');
-        switch (value.label) {
+        switch (value.type) {
             case "input":
                 $scope.makeTextField(form, value, index);
                 break;
             case "submit":
                 $scope.makeSubmitButton(form, value, index);
+                break;
+            case "radio":
+                $scope.makeRadioButton(form, value, index);
                 break;
             default:
 
@@ -162,7 +182,12 @@ angular.module("app").controller("SimpleDemoController", function($compile, $sco
     };
 
     $scope.$watch('components.list.length', function(newVal, oldVal) {
+        for (var i = 0; i < $scope.components.list.length; i++) {
+          $scope.components.list[i].type =$scope.model.builder[i].label;
+        }
         $scope.createForm();
+        console.log($scope.components.list);
+
     });
 });
 
