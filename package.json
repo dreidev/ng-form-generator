@@ -1,0 +1,22 @@
+{
+  "name": "form-maker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sayegh7/ng-form-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sayegh7/ng-form-generator/issues"
+  },
+  "homepage": "https://github.com/Sayegh7/ng-form-generator#readme",
+  "dependencies": {
+    "angular-ui-bootstrap": "^2.2.0"
+  }
+}

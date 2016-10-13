@@ -6,22 +6,33 @@
     <title>Form</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title">
     <link rel="stylesheet" href="app.css" media="screen" title="no title">
+    <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css" media="screen" title="no title">
     <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js" charset="utf-8"></script>
+
+
+
+
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js" charset="utf-8"></script>
+    <!-- <script src="bower_components/angular/angular.js" charset="utf-8"></script> -->
     <script src="app.js" charset="utf-8"></script>
     <script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script src="tether.min.js" charset="utf-8"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
     <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js" charset="utf-8"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js" charset="utf-8"></script>
+
 </head>
 
 <body ng-app="app" ng-controller="SimpleDemoController">
+
     <div class="flex simpleDemo">
 
         <ul dnd-list="model.builder" class="builder">
 
-            <li ng-repeat="item1 in model.builder" dnd-draggable="item1" dnd-moved="model.builder.splice($index, 1)" dnd-effect-allowed="copy" dnd-selected="selected1 = item1" ng-class="{'selected': selected1 === item1}">
-                <div ng-html="item1.display" class="">
+            <li ng-repeat="item1 in model.builder" dnd-draggable="item1" dnd-moved="model.builder.splice($index, 1)" dnd-effect-allowed="copyMove" dnd-selected="selected1 = item1" ng-class="{'selected': selected1 === item1}">
 
+                <div ng-html="item1.display" class="">
                 </div>
 
             </li>
@@ -35,11 +46,32 @@
                 </div>
             </li>
         </ul>
+
+        <ul class="choices trash" dnd-list="trash">
+
+            <li ng-repeat="item3 in trash" dnd-draggable="item3" dnd-nodrag dnd-moved="trash.splice($index, 1)" dnd-effect-allowed="" dnd-selected="selected2 = item3" ng-class="{'selected': selected2 === item3}">
+                <div ng-html="item3.display" class="">
+
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- <div class="form-group ng-scope">
+        <label for="" class="col-sm-4 control-label ng-binding">Text Input</label>
+        <div class="col-sm-8"><input type="text" disabled="disabled" ng-model="inputText" validator-required="false" validator-group="" id="" class="form-control ng-pristine ng-valid" placeholder="placeholder">
+            <p class="help-block">description</p>
+        </div>
+    </div>
+ -->
+
+
+    <div style="display:none;" ng-include src="'components/popoverTemplate.html'">
     </div>
     <div class="flex simpleDemo">
         <div id="form-parent">
-            <form id="form" class="choices" ng-submit="submit()">
-                <input type="submit" name="name" value="">
+            <form id="form" class="choices" ng-submit="form.$isValid && submit()">
             </form>
         </div>
 

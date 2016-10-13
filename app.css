@@ -14,6 +14,7 @@ li{
 	width: 600px;
 	height: 300px;
 	border-radius: 20px;
+	overflow-y: scroll;
 }
 
 /**
@@ -56,7 +57,7 @@ li{
  * half of the element we are dragging over. In other
  * browsers we can use event.offsetY for this.
  */
-.simpleDemo ul[dnd-list] li {
+.simpleDemo ul[dnd-list] li, .myFormItem {
     background-color: #fff;
     border: 1px solid #ddd;
     border-top-right-radius: 4px;
@@ -66,10 +67,13 @@ li{
     margin-bottom: -1px;
 }
 
+.myFormItem{
+	height: 100px;
+}
 /**
  * Show selected elements in green
  */
 .simpleDemo ul[dnd-list] li.selected {
-    background-color: #dff0d8;
-    color: #3c763d;
+    /*background-color: #dff0d8;*/
+    /*color: #3c763d;*/
 }
