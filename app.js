@@ -1,4 +1,4 @@
-angular.module("app", ["dndLists", "ngSanitize", "ui.bootstrap"]);
+angular.module("app", ["formBuild"]);
 angular.module("app").controller("SimpleDemoController", function($compile, $scope, $sce) {
 
 
@@ -6,7 +6,18 @@ angular.module("app").controller("SimpleDemoController", function($compile, $sco
 });
 
 
-angular.module("app").directive('ngHtml', ['$compile', function($compile) {
+
+
+angular.module("formBuild", ["dndLists", "ngSanitize", "ui.bootstrap"]);
+
+angular.module("formBuild").controller("Demo", function($compile, $scope, $sce) {
+
+
+
+});
+
+
+angular.module("formBuild").directive('ngHtml', ['$compile', function($compile) {
     return function(scope, elem, attrs) {
         if (attrs.ngHtml) {
             elem.html(scope.$eval(attrs.ngHtml));

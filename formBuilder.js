@@ -1,4 +1,4 @@
-angular.module('app').directive('ngFormBuilder', function($compile) {
+angular.module('formBuild').directive('ngFormBuilder', function($compile) {
     return {
         restrict: 'E',
         replace: true,
