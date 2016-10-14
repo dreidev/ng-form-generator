@@ -22,8 +22,17 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
                     data[i] = entry;
                 }
                 $scope.data = data;
+                // $scope.createForm();
+                console.log(data);
             };
 
+            $scope.choices = [{
+                "type": 'input',
+                "display": '<div class="form-group ng-scope"><label for="" class="col-sm-4 control-label ng-binding" >Text Input</label><div class="col-sm-8"><input type="text" disabled="disabled" ng-model="inputText" validator-required="false" validator-group="" id="" class="form-control ng-pristine ng-valid" placeholder="placeholder"><p class="help-block ng-binding">description</p></div></div>',
+            }, {
+                "type": 'radio',
+                "display": '<div class="form-group"> <label for="" class="col-sm-4 control-label">Radio</label> <div class="col-sm-8"> <div class="radio"> <label class=""><input name="" validator-group="" value="value one" type="radio" class=""> value one </label> </div> <div class="radio"> <label class=""><input name="" validator-group="" value="value two" type="radio" class=""> value two </label> </div> <p class="help-block">description</p> </div> </div>',
+            }];
             $rootScope.$on("formBuilder:input changed", function(e) {
                 $scope.createForm();
             });
@@ -60,96 +69,29 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
 
 
             $scope.makeTextField = function(form, specs, index) {
-                //initializing dom tags
-                var input = document.createElement('input');
-                var ul = document.createElement('ul');
-                var li = document.createElement('li');
-                var divOuter = document.createElement('div');
-                var divInner = document.createElement('div');
-                var label = document.createElement('label');
-                var p = document.createElement('p');
-
-                // configuring outer div
-                ul.setAttribute("class", "simpleDemo");
-
-                //configuring outer div
-                li.setAttribute("class", "simpleDemo");
-                divOuter.setAttribute("ng-click", "setGlobalIndex(" + index + ")");
-
-                //configuring outer div
-                divOuter.setAttribute("class", "form-group myFormItem");
-
-
-                //configuring inner div
-                divInner.setAttribute("class", "col-xs-8");
-
-                //configuring label
-                label.setAttribute("class", "col-xs-4 control-label");
-                label.innerHTML = $scope.input[index].title;
-                if (specs.required) {
-                    label.innerHTML += "*";
-                }
-                $scope.general = {
-                    index: 0
-                };
-
-                //configuring p
-                p.setAttribute("class", "help-block");
-                p.innerHTML = specs.description;
-
-                // $scope.validate = function(val, type, required) {
-                //     if (required) {
-                //         switch (type) {
-                //             case 'input':
-                //                 if (val === undefined) {
-                //                     console.log("field required");
-                //                 }
-                //                 break;
-                //             default:
-                //
-                //         }
-                //     }
-                //
-                // };
-
-                //configuring input
-                input.setAttribute("type", "text");
-                input.setAttribute("placeholder", "placeholder");
-                input.setAttribute("class", "form-control");
-                input.setAttribute("ng-model", "input[" + index + "].value");
-                // input.setAttribute("ng-change", "validate(input[" + index + "].value, input[" + index + "].type, input[" + index + "].required)");
-                if (specs.required) {
-                    input.required = true;
-                }
-
-                $compile(input)($scope);
-                $compile(divOuter)($scope);
-                divOuter.appendChild(label);
-                divInner.appendChild(input);
-                divInner.appendChild(p);
-                divOuter.appendChild(divInner);
-                li.appendChild(divOuter);
-                ul.appendChild(li);
-                form.appendChild(divOuter);
+              var req = "";
+              if($scope.input[index].required){
+                req = "required";
+              }
+              var element = $compile('<div class="form-group myFormItem"><label for="" class="col-sm-4 control-label ng-binding" >'+$scope.input[index].title +'</label><div class="col-sm-8"><input id="'+"input"+index+'" type="text" ng-model="input['+index+'].value" class="form-control" placeholder="placeholder" '+req +'><p class="help-block">description</p></div></div>')($scope);
+              angular.element(document.getElementById('form')).append(element);
+            };
+            $scope.makeRadioButton = function(form, specs, index) {
+              var req = "";
+              if($scope.input[index].required){
+                req = "required";
+              }
+              var element = $compile('<div class="form-group myFormItem"> <label for="" class="col-sm-4 control-label">'+$scope.input[index].title +'</label> <div class="col-sm-8"><div class="radio"> <label class=""><input name="" validator-group="" value="value one" type="radio" class=""> value one </label> </div> <div class="radio"> <label class=""><input name="" validator-group="" value="value two" type="radio" class="" '+req +'> value two </label> </div> <p class="help-block">description</p> </div> </div>')($scope);
+              angular.element(document.getElementById('form')).append(element);
             };
             $scope.makeSubmitButton = function(form, specs, index) {
-                var input = document.createElement('input');
-                input.setAttribute("type", "submit");
-                input.setAttribute("name", "button");
-                input.setAttribute("class", "btn btn-primary");
-                input.setAttribute("ng-click", "createForm()");
-                $compile(input)($scope);
-                form.appendChild(input);
-            };
-
-            $scope.makeRadioButton = function(form, specs, index) {
-                var input = document.createElement('input');
-                input.setAttribute("type", "radio");
-                input.setAttribute("name", "button");
-                input.setAttribute("class", "btn btn-primary");
-                input.setAttribute("ng-click", "createForm()");
-                $compile(input)($scope);
-                form.appendChild(input);
+              var input = document.createElement('input');
+              input.setAttribute("type", "submit");
+              input.setAttribute("name", "button");
+              input.setAttribute("class", "btn btn-primary");
+              input.setAttribute("ng-click", "createForm()");
+              $compile(input)($scope);
+              form.appendChild(input);
             };
             $scope.render = function(value, index) {
                 var form = document.getElementById('form');
