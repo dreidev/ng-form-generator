@@ -1,6 +1,8 @@
 <div class="form-group">
   <label>Popup Title:</label>
-  <input type="text" ng-model="components.list[general.index].title" class="form-control">
-  <label>Required Field:</label><input type="checkbox" ng-model="components.list[general.index].required" name="name" value="">
-  <button ng-click="createForm()" type="button" name="button">Save</button>
+  <input type="text" ng-model="model.builder[$index].title" class="form-control" />
+  <label>Required Field:</label>
+  <input type="checkbox" ng-model="model.builder[$index].required" />
+  <input type="text" ng-model="model.builder[$index].description" />
+
 </div>

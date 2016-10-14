@@ -26,28 +26,28 @@ angular.module('formBuild').directive('ngFormReader', function($compile) {
               list: []
           };
 
-          $scope.dynamicPopover = {
-              content: 'Hello, World!',
-              templateUrl: 'components/popoverTemplate.html',
-              test: $scope.components.list
-          };
-          $scope.choices = [{
-              "label": 'input',
-              "display": '<div class="form-group ng-scope"><label for="" class="col-sm-4 control-label ng-binding" >Text Input</label><div class="col-sm-8"><input type="text" disabled="disabled" ng-model="inputText" validator-required="false" validator-group="" id="" class="form-control ng-pristine ng-valid" placeholder="placeholder"><p class="help-block ng-binding">description</p></div></div>',
-          },
-          {
-              "label": 'radio',
-              "display": '<div class="form-group"> <label for="" class="col-sm-4 control-label">Radio</label> <div class="col-sm-8"> <div class="radio"> <label class=""><input name="" validator-group="" value="value one" type="radio" class=""> value one </label> </div> <div class="radio"> <label class=""><input name="" validator-group="" value="value two" type="radio" class=""> value two </label> </div> <p class="help-block">description</p> </div> </div>',
-          }];
+          // $scope.dynamicPopover = {
+          //     content: 'Hello, World!',
+          //     templateUrl: 'components/popoverTemplate.html',
+          //     test: $scope.components.list
+          // };
+          // $scope.choices = [{
+          //     "label": 'input',
+          //     "display": '<div class="form-group ng-scope"><label for="" class="col-sm-4 control-label ng-binding" >Text Input</label><div class="col-sm-8"><input type="text" disabled="disabled" ng-model="inputText" validator-required="false" validator-group="" id="" class="form-control ng-pristine ng-valid" placeholder="placeholder"><p class="help-block ng-binding">description</p></div></div>',
+          // },
+          // {
+          //     "label": 'radio',
+          //     "display": '<div class="form-group"> <label for="" class="col-sm-4 control-label">Radio</label> <div class="col-sm-8"> <div class="radio"> <label class=""><input name="" validator-group="" value="value one" type="radio" class=""> value one </label> </div> <div class="radio"> <label class=""><input name="" validator-group="" value="value two" type="radio" class=""> value two </label> </div> <p class="help-block">description</p> </div> </div>',
+          // }];
           $scope.submit = function() {
               for (var i = 0; i < $scope.model.builder.length; i++) {
                   console.log($scope.components.list[i]);
               }
           };
 
-          $scope.click = function() {
-              window.alert("sayegh");
-          };
+          // $scope.click = function() {
+          //     window.alert("sayegh");
+          // };
 
           $scope.createForm = function() {
               var element = document.getElementById("form");
@@ -74,7 +74,7 @@ angular.module('formBuild').directive('ngFormReader', function($compile) {
 
           $scope.$watch('input', function(newValue, oldValue) {
             $scope.components.list = $scope.input;
-              if (oldlength < newValue) {
+              if (oldValue < newValue) {
                   var o2 = JSON.parse(JSON.stringify($scope.emptyObject));
                   $scope.components.list.push(o2);
               }
@@ -100,9 +100,9 @@ angular.module('formBuild').directive('ngFormReader', function($compile) {
 
               //configuring outer div
               li.setAttribute("class", "simpleDemo");
-              divOuter.setAttribute("uib-popover-template", "dynamicPopover.templateUrl");
-              divOuter.setAttribute("popover-title", "Text Field");
-              divOuter.setAttribute("popover-placement", "bottom-right");
+              // divOuter.setAttribute("uib-popover-template", "dynamicPopover.templateUrl");
+              // divOuter.setAttribute("popover-title", "Text Field");
+              // divOuter.setAttribute("popover-placement", "bottom-right");
               divOuter.setAttribute("ng-click", "setGlobalIndex(" + index + ")");
 
               //configuring outer div

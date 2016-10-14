@@ -13,8 +13,12 @@ li{
 	background-color: gray;
 	width: 600px;
 	height: 300px;
+	padding: 0;
 	border-radius: 20px;
 	overflow-y: scroll;
+}
+.extra-height{
+	height: 115px !important;
 }
 
 /**

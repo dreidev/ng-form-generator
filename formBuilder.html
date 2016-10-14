@@ -1,35 +1,68 @@
 <div>
     <div class="flex simpleDemo">
 
-        <ul dnd-list="model.builder" class="builder">
+        <ul dnd-dragover="dragoverCallback(event, index, external, type)" dnd-drop="dropCallback(event, index, item, external, type, 'containerType')" dnd-list="model.builder" class="builder">
 
-            <li ng-repeat="item1 in model.builder" dnd-draggable="item1" dnd-moved="model.builder.splice($index, 1)" dnd-effect-allowed="copyMove" dnd-selected="selected1 = item1" ng-class="{'selected': selected1 === item1}">
+            <li ng-repeat="item1 in model.builder" dnd-draggable="item1" dnd-moved="model.builder.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="selected1 = item1" ng-class="{'selected': selected1 === item1}" ng-click="setGlobalIndex($index)">
 
-                <div ng-html="item1.display" class="">
+                <div uib-popover-template="dynamicPopover.templateUrl" popover-title="Text Field" data-toggle="popover" data-trigger="focus" popover-placement="bottom-right" ng-if="model.builder[$index].label == 'input'" class="">
+                    <div class="form-group ng-scope">
+                        <label for="" class="col-sm-4 control-label">{{model.builder[$index].title}}
+                            <span ng-show="model.builder[$index].required">*</span>
+                        </label>
+                        <div class="col-sm-8"><input type="text" disabled="disabled" validator-required="false" validator-group="" id="" class="form-control" placeholder="placeholder">
+                            <p class="help-block">{{model.builder[$index].description}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div uib-popover-template="dynamicPopover.templateUrl" popover-title="Radio" data-toggle="popover" data-trigger="focus" popover-placement="bottom-right" ng-if="model.builder[$index].label == 'radio'" class="">
+                    <div class="form-group">
+                        <label for="" class="col-sm-4 control-label">{{model.builder[$index].title}}
+                            <span ng-show="{{model.builder[$index].required}}">*</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <div class="radio">
+                                <label class=""><input name="" validator-group="" value="value one" type="radio" class="">
+                                    value one
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label class=""><input name="" validator-group="" value="value two" type="radio" class="">
+                                    value two
+                                </label>
+                            </div>
+                            <p class="help-block">{{model.builder[$index].description}}</p>
+                        </div>
+                    </div>
                 </div>
 
             </li>
+
         </ul>
 
-        <ul class="choices" dnd-list="choices">
+        <ul class="choices">
 
-            <li ng-repeat="item2 in choices" dnd-draggable="item2" dnd-moved="choices.splice($index, 1)" dnd-effect-allowed="copy" dnd-selected="selected2 = item2" ng-class="{'selected': selected2 === item2}">
-                <div ng-html="item2.display" class="">
-
-                </div>
+            <li class="myFormItem extra-height" ng-repeat="item2 in choices" dnd-draggable="item2" dnd-effect-allowed="copy" dnd-copied="item2.id = item2.id + 1">
+                <div ng-html="item2.display" class=""></div>
             </li>
         </ul>
+        <!-- <div class="flex simpleDemo">
+            <div id="form-parent">
+                <form id="form" class="choices" ng-submit="form.$isValid && saveFormAsJson()"></form>
+            </div>
 
-        <ul class="choices trash" dnd-list="trash">
+        </div> -->
+
+        <!-- <ul class="choices trash" dnd-list="trash">
 
             <li ng-repeat="item3 in trash" dnd-draggable="item3" dnd-nodrag dnd-moved="trash.splice($index, 1)" dnd-effect-allowed="" dnd-selected="selected2 = item3" ng-class="{'selected': selected2 === item3}">
                 <div ng-html="item3.display" class="">
 
                 </div>
             </li>
-        </ul>
+        </ul> -->
     </div>
-
 
     <!-- <div class="form-group">
     <label for="" class="col-sm-4 control-label">Radio</label>
@@ -48,9 +81,7 @@
     </div>
 </div> -->
 
-
-    <div style="display:none;" ng-include src="'components/popoverTemplate.html'">
-    </div>
+    <div style="display:none;" ng-include src="'components/popoverTemplate.html'"></div>
     <!-- <div class="flex simpleDemo">
         <div id="form-parent">
             <form id="form" class="choices" ng-submit="form.$isValid && saveFormAsJson()">
