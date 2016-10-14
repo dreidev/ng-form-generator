@@ -1,10 +1,6 @@
 angular.module("app", ["formBuild"]);
 angular.module("app").controller("SimpleDemoController", function($compile, $scope, $sce) {
-    $scope.output = {};
-    $scope.$watch("output", function(newVal, old) {
-        // console.log($scope.output);
-    });
-
+    
 });
 
 

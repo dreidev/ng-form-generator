@@ -3,18 +3,29 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
         restrict: 'E',
         replace: true,
         scope: {
-            input: '='
+            input: '=',
+            data: "="
         },
         templateUrl: './formReader.html',
         controller: function($scope) {
             $scope.submit = function() {
+                var data = [];
                 for (var i = 0; i < $scope.input.length; i++) {
-                    console.log($scope.input[i].value);
+                    var entry = {
+                        title: null,
+                        value: null,
+                        description: null
+                    };
+                    entry.title = $scope.input[i].title;
+                    entry.value = $scope.input[i].value;
+                    entry.description = $scope.input[i].description;
+                    data[i] = entry;
                 }
+                $scope.data = data;
             };
-            
-            $rootScope.$on("formBuilder:input changed", function (e) {
-              $scope.createForm();
+
+            $rootScope.$on("formBuilder:input changed", function(e) {
+                $scope.createForm();
             });
 
             $scope.createForm = function() {
@@ -42,9 +53,10 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
 
 
 
-            $scope.$watch('input.length', function(newValue, oldValue) {
+            $scope.$watchCollection('input', function(newValue, oldValue) {
+
                 $scope.createForm();
-            }, true);
+            });
 
 
             $scope.makeTextField = function(form, specs, index) {
@@ -85,12 +97,27 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
                 p.setAttribute("class", "help-block");
                 p.innerHTML = specs.description;
 
+                // $scope.validate = function(val, type, required) {
+                //     if (required) {
+                //         switch (type) {
+                //             case 'input':
+                //                 if (val === undefined) {
+                //                     console.log("field required");
+                //                 }
+                //                 break;
+                //             default:
+                //
+                //         }
+                //     }
+                //
+                // };
 
                 //configuring input
                 input.setAttribute("type", "text");
                 input.setAttribute("placeholder", "placeholder");
                 input.setAttribute("class", "form-control");
                 input.setAttribute("ng-model", "input[" + index + "].value");
+                // input.setAttribute("ng-change", "validate(input[" + index + "].value, input[" + index + "].type, input[" + index + "].required)");
                 if (specs.required) {
                     input.required = true;
                 }

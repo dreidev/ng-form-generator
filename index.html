@@ -14,12 +14,10 @@
 
 
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js" charset="utf-8"></script>
-    <!-- <script src="bower_components/angular/angular.js" charset="utf-8"></script> -->
     <script src="app.js" charset="utf-8"></script>
     <script src="formBuilder.js" charset="utf-8"></script>
     <script src="formReader.js" charset="utf-8"></script>
     <script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
-    <script src="tether.min.js" charset="utf-8"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
     <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js" charset="utf-8"></script>
 
@@ -28,7 +26,7 @@
 <body ng-app="app" ng-controller="SimpleDemoController">
 
     <ng-form-builder output="output"></ng-form-builder>
-    <ng-form-reader input="output"></ng-form-reader>
+    <ng-form-reader input="output" data="data"></ng-form-reader>
 
 
 </body>
