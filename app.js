@@ -1,20 +1,17 @@
 angular.module("app", ["formBuild"]);
 angular.module("app").controller("SimpleDemoController", function($compile, $scope, $sce) {
-
-
-
-});
-
-
-
-
-angular.module("formBuild", ["dndLists", "ngSanitize", "ui.bootstrap"]);
-
-angular.module("formBuild").controller("Demo", function($compile, $scope, $sce) {
-
-
+    $scope.output = {};
+    $scope.$watch("output", function(newVal, old) {
+        // console.log($scope.output);
+    });
 
 });
+
+
+
+
+angular.module("formBuild", ["dndLists", "ui.bootstrap"]);
+
 
 
 angular.module("formBuild").directive('ngHtml', ['$compile', function($compile) {
