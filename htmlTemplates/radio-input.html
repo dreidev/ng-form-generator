@@ -1,18 +1,21 @@
 <div ng-if="object.type == 'radio'" class="">
     <div class="form-group">
         <label for="" class="col-sm-4 control-label">{{object.title}}
-            <span ng-show="{{object.required}}">*</span>
+            <span ng-show="object.required">*</span>
         </label>
         <div class="col-sm-8">
             <div class="radio">
-                <input name="" value="object.cats" type="radio" class="">
-                cats
+                <label>
+                    <input type="radio" name="chickenEgg" value="chicken" ng-model="object.chickenEgg" ng-required="object.required === true">
+                    Chicken
+                </label>
             </div>
             <div class="radio">
-                <input name="" value="object.dogs" type="radio" class="">
-                dogs
+                <label>
+                    <input type="radio" name="chickenEgg" value="egg" ng-model="object.chickenEgg" ng-required="object.required === true">
+                    Egg
+                </label>
+                <p class="help-block">{{object.description}}</p>
             </div>
-            <p class="help-block">{{object.description}}</p>
         </div>
     </div>
-</div>

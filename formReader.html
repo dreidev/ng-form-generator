@@ -2,7 +2,7 @@
     <div id="form-parent">
         <form id="form" class="choices" ng-submit="submit()">
           <div ng-repeat="item in input">
-              <abstract template="item.htmlTemplate" object="item" choice="item"></abstract>
+              <abstract class="myFormItem" template="item.htmlTemplate" object="item" choice="item"></abstract>
 
           </div>
           <button class="btn btn-primary">Submit</button>

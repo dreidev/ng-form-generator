@@ -1,8 +1,11 @@
 <div class="form-group">
-  <label>Popup Title:</label>
-  <input type="text" ng-model="model.builder[$index].title" class="form-control" />
-  <label>Required Field:</label>
-  <input type="checkbox" ng-model="model.builder[$index].required" />
-  <input type="text" ng-model="model.builder[$index].description" />
+    <label>Popup Title:</label>
+    <input type="text" ng-model="item1.title" class="form-control"/>
+    <label>Required Field:</label>
+    <label class="checkbox-inline">
+        <input type="checkbox" name="required" ng-model="item1.required">
+        Required{{item1.required}}
+    </label>
+    <input type="text" ng-model="item1.description"/>
 
 </div>
