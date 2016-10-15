@@ -3,12 +3,13 @@ angular.module('formBuild').directive('abstract', function () {
         restrict: 'EA',   // 'A' is the default, so you could remove this line
         scope: {
           object: '=',
-          popoverTemplateUrl:"@",
-          choice:'='
+          popoverTemplateUrl:"@?",
+          choice:'=?',
+          template:"="
         },
         link: function(scope, element, attrs) {
            scope.getContentUrl = function() {
-                return scope.$eval(attrs.template);
+                return (scope.template);
            };
        },
        template: '<div ng-include="getContentUrl()"></div>'

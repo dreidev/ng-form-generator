@@ -42,9 +42,14 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
             $scope.choices = [{
                 "type": 'input',
                 "display": '<div class="form-group"><label for="" class="col-sm-4 control-label ng-binding" >Text Input</label><div class="col-sm-8"><input type="text" disabled="disabled" ng-model="inputText" validator-required="false" validator-group="" id="" class="form-control ng-pristine ng-valid" placeholder="placeholder"><p class="help-block ng-binding">description</p></div></div>',
+                htmlTemplate:"text-input.html",
+                popoverTemplateUrl:"components/textInput.html",
             }, {
                 "type": 'radio',
                 "display": '<div class="form-group"> <label for="" class="col-sm-4 control-label">Radio</label> <div class="col-sm-8"> <div class="radio"> <label class=""><input name="" validator-group="" value="value one" type="radio" class=""> value one </label> </div> <div class="radio"> <label class=""><input name="" validator-group="" value="value two" type="radio" class=""> value two </label> </div> <p class="help-block">description</p> </div> </div>',
+                htmlTemplate:"radio-input.html",
+                popoverTemplateUrl:"components/radioInput.html",
+
             }];
 
             $scope.dragoverCallback = function(event, index, external, type) {
@@ -71,11 +76,11 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
                 for (i = 0; i < $scope.model.builder.length; i++) {
                     var o2 = JSON.parse(JSON.stringify($scope.emptyObject));
                     if (!('required' in $scope.model.builder[i])) {
-                      if (('schema' in $scope.model.builder[i])) {
-                          for (j = 0; j < $scope.model.builder[i].schema.length; j++) {
-                              $scope.model.builder[i][$scope.model.builder[i].schema[j]] = null;
-                          }
-                      }
+                      // if (('schema' in $scope.model.builder[i])) {
+                      //     for (j = 0; j < $scope.model.builder[i].schema.length; j++) {
+                      //         $scope.model.builder[i][$scope.model.builder[i].schema[j]] = null;
+                      //     }
+                      // }
                         angular.extend($scope.model.builder[i], o2);
                     }
 
@@ -83,6 +88,7 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
                 var newModelInstance = JSON.parse(JSON.stringify($scope.model.builder));
 
                 $scope.output = newModelInstance;
+                // console.log(newModelInstance);
                 $rootScope.builder = $scope.model.builder;
                 $rootScope.$broadcast("formBuilder:input changed");
             }, true);

@@ -1,6 +1,11 @@
 <div class="flex simpleDemo">
     <div id="form-parent">
-        <form id="form" class="choices" ng-submit="form.$isValid && saveFormAsJson()">
+        <form id="form" class="choices" ng-submit="submit()">
+          <div ng-repeat="item in input">
+              <abstract template="item.htmlTemplate" object="item" choice="item"></abstract>
+
+          </div>
+          <input type="submit" name="name" value="">
         </form>
     </div>
 </div>

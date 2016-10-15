@@ -1,10 +1,10 @@
-<div class="form-group" ng-if="object.type == choice.type">
-    <div class="col-sm-8">
-
-            {{object.namelabel}}<input name="" validator-group="" placeholder="soso" type="text" class="">
-            <br>
-            {{object.agelabel}}<input type="text" class="">
-
-        <p class="help-block">description</p>
+<div class="">
+    <div class="form-group">
+        <label for="" class="col-sm-4 control-label">{{object.title}}
+            <span ng-show="object.required">*</span>
+        </label>
+        <div class="col-sm-8"><input type="text" class="form-control" ng-model="object.models" placeholder="placeholder" required="object.required">
+            <p class="help-block">{{object.description}}</p>
+        </div>
     </div>
 </div>
