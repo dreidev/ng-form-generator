@@ -5,7 +5,7 @@ angular.module('formBuild').directive('radioInput', function () {
           object: '=',
           popoverTemplateUrl:"@?"
         },
-        templateUrl: '../htmlTemplates/radio-input.html',
+        templateUrl: './htmlTemplates/radio-input.html',
         link: function (scope, element, attrs) {
         }
     };
