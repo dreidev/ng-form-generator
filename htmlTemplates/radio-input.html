@@ -4,18 +4,15 @@
             <span ng-show="object.required">*</span>
         </label>
         <div class="col-sm-8">
-            <div class="radio">
+
+            <div class="radio" ng-repeat="option in object.options">
                 <label>
-                    <input type="radio" name="chickenEgg" value="chicken" ng-model="object.chickenEgg" ng-required="object.required === true">
-                    Chicken
+                    <input type="radio" name="option" value="{{option}}" ng-model="object.value" ng-required="$index == 0 && object.required">
+                    {{option}}
                 </label>
             </div>
-            <div class="radio">
-                <label>
-                    <input type="radio" name="chickenEgg" value="egg" ng-model="object.chickenEgg" ng-required="object.required === true">
-                    Egg
-                </label>
-                <p class="help-block">{{object.description}}</p>
-            </div>
+
+            <p class="help-block">{{object.description}}</p>
         </div>
+        <br clear="all"/>
     </div>

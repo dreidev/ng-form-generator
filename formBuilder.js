@@ -12,6 +12,7 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
                 required: false,
                 title: "title here",
                 description: "description here",
+                options: ['option 1', 'option 2'],
             };
             $scope.dragVars = {
                 dragging: false,
