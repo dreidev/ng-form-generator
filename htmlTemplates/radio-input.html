@@ -4,9 +4,10 @@
             <span ng-show="object.required">*</span>
         </label>
         <div class="col-sm-8">
+
             <div class="radio" ng-repeat="option in object.options">
                 <label>
-                    <input type="radio" value="option" ng-model="object[option]" ng-required="object.required === true">
+                    <input type="radio" name="option" value="{{option}}" ng-model="object.value" ng-required="$index == 0 && object.required">
                     {{option}}
                 </label>
             </div>
