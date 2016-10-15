@@ -3,9 +3,9 @@ angular.module('formBuild').directive('radioInput', function () {
         restrict: 'EA',   // 'A' is the default, so you could remove this line
         scope: {
           object: '=',
-          popoverTemplateUrl:"@"
+          popoverTemplateUrl:"@?"
         },
-        templateUrl: './radio-input.html',
+        templateUrl: '../htmlTemplates/radio-input.html',
         link: function (scope, element, attrs) {
         }
     };

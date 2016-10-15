@@ -3,17 +3,18 @@
         <ul dnd-dragover="dragoverCallback(event, index, external, type)" dnd-drop="dropCallback(event, index, item, external, type, 'containerType')" dnd-list="model.builder" class="builder">
             <li ng-repeat="item1 in model.builder" dnd-draggable="item1" dnd-moved="model.builder.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="selected1 = item1" ng-class="{'selected': selected1 === item1}" ng-click="setGlobalIndex($index)">
 
-                <div uib-popover-template="dynamicPopover.textInput" popover-title="Text Field"  popover-placement="bottom-right">
-                    <text-input popoverTemplateUrl="./components/textInput.html" object="item1"></text-input>
+                <div uib-popover-template="'popover/textInput.html'" popover-title="Text Field" popover-placement="bottom-right">
+                    <text-input object="item1"></text-input>
 
                 </div>
-                <div uib-popover-template="dynamicPopover.radioInput" popover-title="Radio" popover-placement="bottom-right" class="">
+                <div uib-popover-template="'popover/radioInput.html'" popover-title="Radio" popover-placement="bottom-right" class="">
 
-                    <radio-input popoverTemplateUrl="./components/radioInput.html" object="item1"></radio-input>
+                    <radio-input object="item1"></radio-input>
                 </div>
-                <div ng-repeat="choice in extraChoices" uib-popover-template="choice.popoverTemplateUrl" popover-title="Radio" popover-placement="bottom-right">
+                <div ng-if="choice.type===item1.type" ng-repeat="choice in extraChoices" uib-popover-template="choice.popoverTemplateUrl" popover-title="Sample" popover-placement="bottom-right">
 
                     <abstract template="choice.htmlTemplate" object="item1" choice="choice"></abstract>
+                    <div style="display:none;" ng-include src="'popover/sample.html'"></div>
 
                 </div>
             </li>
@@ -25,6 +26,6 @@
             </li>
         </ul>
     </div>
-    <div style="display:none;" ng-include src="dynamicPopover.textInput"></div>
-    <div style="display:none;" ng-include src="'components/sample.html'"></div>
+    <div style="display:none;" ng-include src="'popover/textInput.html'"></div>
+    <div style="display:none;" ng-include src="'popover/radioInput.html'"></div>
 </div>
