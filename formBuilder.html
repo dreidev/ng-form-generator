@@ -3,24 +3,24 @@
         <ul dnd-dragover="dragoverCallback(event, index, external, type)" dnd-drop="dropCallback(event, index, item, external, type, 'containerType')" dnd-list="model.builder" class="builder">
             <li ng-repeat="item1 in model.builder" dnd-draggable="item1" dnd-moved="model.builder.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="selected1 = item1" ng-class="{'selected': selected1 === item1}" ng-click="setGlobalIndex($index)">
 
-                <div uib-popover-template="dynamicPopover.textInput" popover-title="Text Field" data-toggle="popover" data-trigger="focus" popover-placement="bottom-right">
+                <div uib-popover-template="dynamicPopover.textInput" popover-title="Text Field"  popover-placement="bottom-right">
                     <text-input popoverTemplateUrl="./components/textInput.html" object="item1"></text-input>
 
                 </div>
-                <div uib-popover-template="dynamicPopover.radioInput" popover-title="Radio" data-toggle="popover" data-trigger="focus" popover-placement="bottom-right" class="">
+                <div uib-popover-template="dynamicPopover.radioInput" popover-title="Radio" popover-placement="bottom-right" class="">
 
                     <radio-input popoverTemplateUrl="./components/radioInput.html" object="item1"></radio-input>
                 </div>
-                <div ng-repeat="choice in extraChoices" uib-popover-template="'./components/sample.html'" popover-title="Radio" data-toggle="popover" data-trigger="focus" popover-placement="bottom-right">
+                <div ng-repeat="choice in extraChoices" uib-popover-template="choice.popoverTemplateUrl" popover-title="Radio" popover-placement="bottom-right">
 
-                    <abstract template="choice.htmlTemplate" popoverTemplateUrl="choice.popoverTemplateUrl" object="item1" choice="choice"></abstract>
+                    <abstract template="choice.htmlTemplate" object="item1" choice="choice"></abstract>
 
                 </div>
             </li>
         </ul>
         <ul class="choices">
 
-            <li class="myFormItem extra-height" ng-repeat="item2 in choices" dnd-draggable="item2" dnd-effect-allowed="copy" dnd-copied="item2.id = item2.id + 1">
+            <li class="extra-height myFormItem" ng-repeat="item2 in choices" dnd-draggable="item2" dnd-effect-allowed="copy" dnd-copied="item2.id = item2.id + 1">
                 <div ng-html="item2.display" class=""></div>
             </li>
         </ul>

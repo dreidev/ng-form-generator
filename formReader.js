@@ -1,4 +1,4 @@
-angular.module('formBuild').directive('ngFormReader', function($compile, $rootScope, builder) {
+angular.module('formBuild').directive('ngFormReader', function($templateRequest, $compile, $rootScope, builder) {
     return {
         restrict: 'E',
         replace: true,
@@ -22,12 +22,9 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
                     data[i] = entry;
                 }
                 $scope.data = data;
-                console.log(data);
+                console.log($scope.input);
             };
 
-            $scope.addCustomFields = function () {
-
-            };
 
             $rootScope.$on("formBuilder:input changed", function(e) {
                 $scope.createForm();
@@ -50,9 +47,7 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
                 for (var i = 0; i < $scope.input.length; i++) {
                     $scope.render($scope.input[i], i);
                 }
-                for (i = 0; i < builder.templates.length; i++) {
-                    $scope.render(builder.templates[i], i);
-                }
+
                 $scope.render({
                     type: "submit"
                 }, $scope.input.length);
@@ -67,31 +62,42 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
 
 
             $scope.makeTextField = function(index) {
-              var req = "";
-              var star = "";
-              if($scope.input[index].required){
-                req = "required";
-                star = "*";
-              }
-              var element = $compile('<div class="form-group myFormItem"><label for="" class="col-sm-4 control-label ng-binding" >'+$scope.input[index].title  + star +'</label><div class="col-sm-8"><input id="'+"input"+index+'" type="text" ng-model="input['+index+'].value" class="form-control" placeholder="placeholder" '+req +'><p class="help-block">description</p></div></div>')($scope);
-              angular.element(document.getElementById('form')).append(element);
+                var req = "";
+                var star = "";
+                if ($scope.input[index].required) {
+                    req = "required";
+                    star = "*";
+                }
+                var element = $compile('<div class="form-group myFormItem"><label for="" class="col-sm-4 control-label ng-binding" >' + $scope.input[index].title + star + '</label><div class="col-sm-8"><input id="' + "input" + index + '" type="text" ng-model="input[' + index + '].value" class="form-control" placeholder="placeholder" ' + req + '><p class="help-block">description</p></div></div>')($scope);
+                angular.element(document.getElementById('form')).append(element);
             };
             $scope.makeRadioButton = function(index) {
-              var req = "";
-              if($scope.input[index].required){
-                req = "required";
-              }
-              var element = $compile('<div class="form-group myFormItem"> <label for="" class="col-sm-4 control-label">'+$scope.input[index].title +'</label> <div class="col-sm-8"><div class="radio"> <label class=""><input name="" validator-group="" value="value one" type="radio" class=""> value one </label> </div> <div class="radio"> <label class=""><input name="" validator-group="" value="value two" type="radio" class="" '+req +'> value two </label> </div> <p class="help-block">description</p> </div> </div>')($scope);
-              angular.element(document.getElementById('form')).append(element);
+                var req = "";
+                if ($scope.input[index].required) {
+                    req = "required";
+                }
+                var element = $compile('<div class="form-group myFormItem"> <label for="" class="col-sm-4 control-label">' + $scope.input[index].title + '</label> <div class="col-sm-8"><div class="radio"> <label class=""><input name="" validator-group="" value="value one" type="radio" class=""> value one </label> </div> <div class="radio"> <label class=""><input name="" validator-group="" value="value two" type="radio" class="" ' + req + '> value two </label> </div> <p class="help-block">description</p> </div> </div>')($scope);
+                angular.element(document.getElementById('form')).append(element);
             };
             $scope.makeSubmitButton = function(index) {
-              var input = document.createElement('input');
-              input.setAttribute("type", "submit");
-              input.setAttribute("name", "button");
-              input.setAttribute("class", "btn btn-primary");
-              input.setAttribute("ng-click", "createForm()");
-              $compile(input)($scope);
-              form.appendChild(input);
+                var input = document.createElement('input');
+                input.setAttribute("type", "submit");
+                input.setAttribute("name", "button");
+                input.setAttribute("class", "btn btn-primary");
+                input.setAttribute("ng-click", "createForm()");
+                $compile(input)($scope);
+                form.appendChild(input);
+            };
+
+            $scope.makeCustomType = function(index) {
+              var html = $scope.input[index].display;
+              var schema = $scope.input[index].schema;
+              for (var i = 0; i < schema.length; i++) {
+                html = html.replace("_"+schema[i], 'input['+index+'].'+schema[i]);
+                html = html.replace(schema[i]+"_", $scope.input[index][schema[i]]);
+              }
+              var element = $compile(html)($scope);
+              angular.element(document.getElementById('form')).append(element);
             };
             $scope.render = function(value, index) {
                 switch (value.type) {
@@ -105,6 +111,8 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
                         $scope.makeRadioButton(index);
                         break;
                     default:
+                        $scope.makeCustomType(index);
+                        break;
                 }
             };
         },
