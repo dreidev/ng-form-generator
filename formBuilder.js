@@ -1,4 +1,4 @@
-angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootScope) {
+angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootScope, builder) {
     return {
         restrict: 'E',
         replace: true,
@@ -26,7 +26,11 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
                 $scope.dragVars.dragging = false;
                 $scope.dragVars.after = $scope.model.builder;
             };
+            $scope.addCustomFields = function() {
+                $scope.choices = $scope.choices.concat(builder.choices);
+                $scope.extraChoices = builder.choices;
 
+            };
             //left list
             $scope.model = {
                 builder: []
@@ -58,23 +62,28 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
                 $scope.endDrag();
                 return item;
             };
-
+            $scope.addCustomFields();
 
             $scope.$watch('model.builder', function(newVal, oldVal) {
+                var i = 0;
+                var j = 0;
                 if ($scope.dragVars.dragging) {
                     return;
                 }
-                for (var i = 0; i < $scope.model.builder.length; i++) {
+                for (i = 0; i < $scope.model.builder.length; i++) {
                     var o2 = JSON.parse(JSON.stringify($scope.emptyObject));
                     if (!('required' in $scope.model.builder[i])) {
                         angular.extend($scope.model.builder[i], o2);
                     }
                 }
                 var newModelInstance = JSON.parse(JSON.stringify($scope.model.builder));
-                for (var j = 0; j < newModelInstance.length; j++) {
+                for (j = 0; j < newModelInstance.length; j++) {
                     delete newModelInstance[j].display;
                 }
+                console.log($scope.model.builder);
+
                 $scope.output = newModelInstance;
+                $rootScope.builder = $scope.model.builder;
                 $rootScope.$broadcast("formBuilder:input changed");
             }, true);
         },

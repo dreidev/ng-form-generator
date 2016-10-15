@@ -1,4 +1,4 @@
-angular.module('formBuild').directive('ngFormReader', function($compile, $rootScope) {
+angular.module('formBuild').directive('ngFormReader', function($compile, $rootScope, builder) {
     return {
         restrict: 'E',
         replace: true,
@@ -22,17 +22,13 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
                     data[i] = entry;
                 }
                 $scope.data = data;
-                // $scope.createForm();
                 console.log(data);
             };
 
-            $scope.choices = [{
-                "type": 'input',
-                "display": '<div class="form-group ng-scope"><label for="" class="col-sm-4 control-label ng-binding" >Text Input</label><div class="col-sm-8"><input type="text" disabled="disabled" ng-model="inputText" validator-required="false" validator-group="" id="" class="form-control ng-pristine ng-valid" placeholder="placeholder"><p class="help-block ng-binding">description</p></div></div>',
-            }, {
-                "type": 'radio',
-                "display": '<div class="form-group"> <label for="" class="col-sm-4 control-label">Radio</label> <div class="col-sm-8"> <div class="radio"> <label class=""><input name="" validator-group="" value="value one" type="radio" class=""> value one </label> </div> <div class="radio"> <label class=""><input name="" validator-group="" value="value two" type="radio" class=""> value two </label> </div> <p class="help-block">description</p> </div> </div>',
-            }];
+            $scope.addCustomFields = function () {
+
+            };
+
             $rootScope.$on("formBuilder:input changed", function(e) {
                 $scope.createForm();
             });
@@ -54,6 +50,9 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
                 for (var i = 0; i < $scope.input.length; i++) {
                     $scope.render($scope.input[i], i);
                 }
+                for (i = 0; i < builder.templates.length; i++) {
+                    $scope.render(builder.templates[i], i);
+                }
                 $scope.render({
                     type: "submit"
                 }, $scope.input.length);
@@ -63,20 +62,21 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
 
 
             $scope.$watchCollection('input', function(newValue, oldValue) {
-
                 $scope.createForm();
             });
 
 
-            $scope.makeTextField = function(form, specs, index) {
+            $scope.makeTextField = function(index) {
               var req = "";
+              var star = "";
               if($scope.input[index].required){
                 req = "required";
+                star = "*";
               }
-              var element = $compile('<div class="form-group myFormItem"><label for="" class="col-sm-4 control-label ng-binding" >'+$scope.input[index].title +'</label><div class="col-sm-8"><input id="'+"input"+index+'" type="text" ng-model="input['+index+'].value" class="form-control" placeholder="placeholder" '+req +'><p class="help-block">description</p></div></div>')($scope);
+              var element = $compile('<div class="form-group myFormItem"><label for="" class="col-sm-4 control-label ng-binding" >'+$scope.input[index].title  + star +'</label><div class="col-sm-8"><input id="'+"input"+index+'" type="text" ng-model="input['+index+'].value" class="form-control" placeholder="placeholder" '+req +'><p class="help-block">description</p></div></div>')($scope);
               angular.element(document.getElementById('form')).append(element);
             };
-            $scope.makeRadioButton = function(form, specs, index) {
+            $scope.makeRadioButton = function(index) {
               var req = "";
               if($scope.input[index].required){
                 req = "required";
@@ -84,7 +84,7 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
               var element = $compile('<div class="form-group myFormItem"> <label for="" class="col-sm-4 control-label">'+$scope.input[index].title +'</label> <div class="col-sm-8"><div class="radio"> <label class=""><input name="" validator-group="" value="value one" type="radio" class=""> value one </label> </div> <div class="radio"> <label class=""><input name="" validator-group="" value="value two" type="radio" class="" '+req +'> value two </label> </div> <p class="help-block">description</p> </div> </div>')($scope);
               angular.element(document.getElementById('form')).append(element);
             };
-            $scope.makeSubmitButton = function(form, specs, index) {
+            $scope.makeSubmitButton = function(index) {
               var input = document.createElement('input');
               input.setAttribute("type", "submit");
               input.setAttribute("name", "button");
@@ -94,16 +94,15 @@ angular.module('formBuild').directive('ngFormReader', function($compile, $rootSc
               form.appendChild(input);
             };
             $scope.render = function(value, index) {
-                var form = document.getElementById('form');
                 switch (value.type) {
                     case "input":
-                        $scope.makeTextField(form, value, index);
+                        $scope.makeTextField(index);
                         break;
                     case "submit":
-                        $scope.makeSubmitButton(form, value, index);
+                        $scope.makeSubmitButton(index);
                         break;
                     case "radio":
-                        $scope.makeRadioButton(form, value, index);
+                        $scope.makeRadioButton(index);
                         break;
                     default:
                 }
