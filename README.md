@@ -95,7 +95,7 @@ Example:
 # Creating an HTML template
 When creating your html template, bind everything to `$scope.object` 
 
-Note that `item1.title` in the poopover template is bound to `object.title` in the htmlTemplate
+Note that `item1.title` in the popover template is bound to `object.title` in the htmlTemplate
 
 Example:
 ```sh
