@@ -1,8 +1,7 @@
 # ng-form-generator
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-
 ng-form-generator is the perfect solution for developers looking to create a form builder for their websites
+
 # Installation
 In order for ng-form-generator to work it requires angular, bootstrap and ui-bootstrap
 
