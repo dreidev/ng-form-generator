@@ -6,9 +6,7 @@
 .simpleDemo ul[dnd-list] > li {
 	position: relative;
 }
-li{
-	height: 120px;
-}
+
 .builder, .choices{
 	background-color: gray;
 	width: 600px;
