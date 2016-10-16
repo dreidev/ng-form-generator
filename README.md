@@ -79,24 +79,24 @@ Where:
   - `htmlTemplate` is the url to the html file of your custom tab
 
 # Creating a popover template
-When creating your popover template, bind everything to `$scope.item1`
+When creating your popover template, bind everything to `$scope.object`
 
 Example:
 ```sh
 <div class="form-group">
   <label>Popup Title:</label>
-  <input type="text" ng-model="item1.title" class="form-control" />
+  <input type="text" ng-model="object.title" class="form-control" />
   <label>Required Field:</label>
-  <input type="checkbox" ng-model="item1.required" />
-  <input type="text" ng-model="item1.description" />
+  <input type="checkbox" ng-model="object.required" />
+  <input type="text" ng-model="object.description" />
 </div>
 ```
 
 # Creating an HTML template
-When creating your html template, bind everything to `$scope.object` 
+When creating your html template, bind everything to `$scope.object`
 
-Note that `item1.title` in the popover template is bound to `object.title` in the htmlTemplate
-
+Note that this is the same `$scope.object` you're binding to data to in the
+popover template
 Example:
 ```sh
 <div class="">
@@ -115,4 +115,3 @@ License
 ----
 
 MIT
-

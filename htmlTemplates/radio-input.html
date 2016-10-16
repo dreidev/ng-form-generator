@@ -5,7 +5,7 @@
         </label>
         <div class="col-sm-8">
 
-            <div class="radio" ng-repeat="option in object.options">
+            <div class="radio" ng-repeat="option in object.options track by $index">
                 <label>
                     <input type="radio" name="option" value="{{option}}" ng-model="object.value" ng-required="$index == 0 && object.required">
                     {{option}}
