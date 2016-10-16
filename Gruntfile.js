@@ -10,7 +10,7 @@ var pkg = require('./package.json');
 //This enables users to create any directory structure they desire.
 var createFolderGlobs = function(fileTypePatterns) {
   fileTypePatterns = Array.isArray(fileTypePatterns) ? fileTypePatterns : [fileTypePatterns];
-  var ignore = ['node_modules','bower_components','dist','temp', 'Sweet'];
+  var ignore = ['node_modules','bower_components','dist','temp'];
   var fs = require('fs');
   return fs.readdirSync(process.cwd())
           .map(function(file){
@@ -107,7 +107,7 @@ module.exports = function (grunt) {
     copy: {
       main: {
         files: [
-          {src: ['assets/**'], dest: 'dist/',filter:'isFile',expand:true},
+          {src: ['popover/**'], dest: 'dist/',filter:'isFile',expand:true},
           {src: ['images/**'], dest: 'dist/',filter:'isFile',expand:true},
           {src: ['webfonts/**'], dest: 'dist/',filter:'isFile',expand:true},
           {src: ['bower_components/font-awesome/fonts/**'], dest: 'dist/',filter:'isFile',expand:true},

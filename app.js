@@ -17,4 +17,4 @@ angular.module("app").controller("SimpleDemoController", function($compile, $sco
 
 
 
-angular.module("formBuild", ["dndLists"]);
+angular.module("formBuild", ["dndLists", "ui.bootstrap"]);
