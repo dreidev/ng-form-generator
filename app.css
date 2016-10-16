@@ -77,6 +77,10 @@
 .myFormItem{
 	min-height: 120px;
 }
+
+.form-group{
+	margin-top: 15px !important;
+}
 /**
  * Show selected elements in green
  */
