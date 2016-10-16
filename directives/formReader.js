@@ -6,7 +6,7 @@ angular.module('formBuild').directive('ngFormReader', function($templateRequest,
             input: '=',
             data: "="
         },
-        templateUrl: './formReader.html',
+        templateUrl: 'htmlTemplates/formReader.html',
         controller: function($scope) {
             $scope.submit = function() {
                 var data = [];

@@ -5,7 +5,7 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
         scope: {
             output: '='
         },
-        templateUrl: './formBuilder.html',
+        templateUrl: 'htmlTemplates/formBuilder.html',
         controller: function($scope) {
             //change default settings in this object
             $scope.emptyObject = {
@@ -43,13 +43,13 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
             $scope.choices = [{
                 "type": 'input',
                 "display": '<div class="form-group"><label for="" class="col-sm-4 control-label ng-binding" >Text Input</label><div class="col-sm-8"><input type="text" disabled="disabled" ng-model="inputText" validator-required="false" validator-group="" id="" class="form-control ng-pristine ng-valid" placeholder="placeholder"><p class="help-block ng-binding">description</p></div></div>',
-                htmlTemplate:"htmlTemplates/text-input.html",
-                popoverTemplateUrl:"popover/textInput.html",
+                htmlTemplate: "htmlTemplates/text-input.html",
+                popoverTemplateUrl: "../popover/textInput.html",
             }, {
                 "type": 'radio',
                 "display": '<div class="form-group"> <label for="" class="col-sm-4 control-label">Radio</label> <div class="col-sm-8"> <div class="radio"> <label class=""><input name="" validator-group="" value="value one" type="radio" class=""> value one </label> </div> <div class="radio"> <label class=""><input name="" validator-group="" value="value two" type="radio" class=""> value two </label> </div> <p class="help-block">description</p> </div> </div>',
-                htmlTemplate:"htmlTemplates/radio-input.html",
-                popoverTemplateUrl:"popover/radioInput.html",
+                htmlTemplate: "htmlTemplates/radio-input.html",
+                popoverTemplateUrl: "../popover/radioInput.html",
 
             }];
 
@@ -60,8 +60,12 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
 
             $scope.dropCallback = function(event, index, item, external, type, allowedType) {
                 if (external) {
-                    if (allowedType === 'itemType' && !item.label) return false;
-                    if (allowedType === 'containerType' && !angular.isArray(item)) return false;
+                    if (allowedType === 'itemType' && !item.label) {
+                        return false;
+                    }
+                    if (allowedType === 'containerType' && !angular.isArray(item)) {
+                        return false;
+                    }
                 }
                 $scope.endDrag();
                 return item;
