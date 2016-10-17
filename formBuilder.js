@@ -43,13 +43,37 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
             $scope.choices = [{
                 "type": 'input',
                 "display": '<div class="form-group"><label for="" class="col-sm-4 control-label ng-binding" >Text Input</label><div class="col-sm-8"><input type="text" disabled="disabled" ng-model="inputText" validator-required="false" validator-group="" id="" class="form-control ng-pristine ng-valid" placeholder="placeholder"><p class="help-block ng-binding">description</p></div></div>',
-                htmlTemplate:"htmlTemplates/text-input.html",
-                popoverTemplateUrl:"popover/textInput.html",
+                htmlTemplate: "htmlTemplates/text-input.html",
+                popoverTemplateUrl: "../popover/textInput.html",
             }, {
                 "type": 'radio',
                 "display": '<div class="form-group"> <label for="" class="col-sm-4 control-label">Radio</label> <div class="col-sm-8"> <div class="radio"> <label class=""><input name="" validator-group="" value="value one" type="radio" class=""> value one </label> </div> <div class="radio"> <label class=""><input name="" validator-group="" value="value two" type="radio" class=""> value two </label> </div> <p class="help-block">description</p> </div> </div>',
-                htmlTemplate:"htmlTemplates/radio-input.html",
-                popoverTemplateUrl:"popover/radioInput.html",
+                htmlTemplate: "htmlTemplates/radio-input.html",
+                popoverTemplateUrl: "../popover/radioInput.html",
+
+            }, {
+                "type": 'password',
+                "display": '<div class=""><div class="form-group"><label for="" class="col-sm-4 control-label">Password<span ng-show="object.required">*</span></label><div class="col-sm-8"><input type="password" class="form-control" ng-model="object.models" placeholder="placeholder" required="object.required"><p class="help-block">Description</p></div></div></div>',
+                htmlTemplate: "htmlTemplates/password.html",
+                popoverTemplateUrl: "../popover/password.html",
+
+            },{
+                "type": 'date',
+                "display": '<div class=""><div class="form-group"><label for="" class="col-sm-4 control-label">Date<span ng-show="object.required">*</span></label><div class="col-sm-8"><input type="date" class="form-control" ng-model="object.models" placeholder="placeholder" required="object.required"><p class="help-block">Description</p></div></div></div>',
+                htmlTemplate: "htmlTemplates/date.html",
+                popoverTemplateUrl: "../popover/date.html",
+
+            },{
+                "type": 'dropdown',
+                "display": '<div class="">                    <div class="form-group">                        <label for="" class="col-sm-4 control-label">Dropdown                           <span ng-show="object.required">*</span>                        </label>                        <div class="col-sm-8">                            <select><option value="option">option</option>                            </select>                        </div>                    </div></div>',
+                htmlTemplate: "htmlTemplates/dropdown.html",
+                popoverTemplateUrl: "../popover/dropdown.html",
+
+            },{
+                "type": 'checkbox',
+                "display": '<div class=""><div class="form-group"><label for="" class="col-sm-4 control-label">Checkbox<span ng-show="object.required">*</span></label><div class="col-sm-8"><div class="radio"><label><input type="checkbox"  name="group"/>option 1</label><br /><label><input type="checkbox"  name="group"/>option 2</label></div><p class="help-block">{{object.description}}</p></div><br clear="all"/></div>',
+                htmlTemplate: "htmlTemplates/checkbox.html",
+                popoverTemplateUrl: "../popover/checkbox.html",
 
             }];
 

@@ -1,0 +1,18 @@
+<div>
+    <div class="flex simpleDemo">
+        <ul dnd-dragover="dragoverCallback(event, index, external, type)" dnd-drop="dropCallback(event, index, item, external, type, 'containerType')" dnd-list="model.builder" class="builder">
+            <li ng-repeat="object in model.builder" dnd-draggable="object" dnd-moved="model.builder.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="selected1 = object" ng-class="{'selected': selected1 === object}" ng-click="setGlobalIndex($index)" class="">
+
+                <div class="myFormItem" uib-popover-template="object.popoverTemplateUrl" popover-title="Element {{$index}}" popover-placement="bottom-right">
+                    <abstract class="myFormItem" template="object.htmlTemplate" object="object" choice="object"></abstract>
+                </div>
+            </li>
+        </ul>
+        <ul class="choices">
+
+            <li class="extra-height myFormItem" ng-repeat="item2 in choices" dnd-draggable="item2" dnd-effect-allowed="copy" dnd-copied="item2.id = item2.id + 1">
+                <div ng-html="item2.display" class=""></div>
+            </li>
+        </ul>
+    </div>
+</div>

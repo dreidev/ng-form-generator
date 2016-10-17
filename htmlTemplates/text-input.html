@@ -4,7 +4,7 @@
             <span ng-show="object.required">*</span>
         </label>
         <div class="col-sm-8"><input type="text"
-          ng-model="object.model" class="form-control" placeholder="placeholder" ng-required="object.required">
+          ng-model="object.value" class="form-control" placeholder="{{object.title}}" required="object.required">
             <p class="help-block">{{object.description}}</p>
         </div>
     </div>
