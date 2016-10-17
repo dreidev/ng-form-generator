@@ -5,19 +5,7 @@ ng-form-generator is the perfect solution for developers looking to create a for
 # Installation
 In order for ng-form-generator to work it requires angular, bootstrap and ui-bootstrap
 
-After you've made sure those 3 exist in your project, install with bower:
-```sh
-$ bower install ng-form-generator
-```
-then include it in your project
-
-```sh
-    <script src="bower_components/ng-form-generator/ng-form-generator.min.js"></script>
-    <link rel="stylesheet" href="bower_components/ng-form-generator/ng-form-generator.min.css">
-
-```
-
-OR install with npm
+After you've made sure those 3 exist in your project, install with npm:
 ```sh
 $ npm install ng-form-generator
 ```
