@@ -1,0 +1,16 @@
+<div class="form-group">
+    <label>Popup Title:</label>
+    <input type="text" ng-model="object.title" class="form-control"/>
+    <label>Required Field:</label>
+    <label class="checkbox-inline">
+        <input type="checkbox" name="required" ng-model="object.required">
+        Required
+    </label>
+    <textarea ng-model="object.options"
+              rows="5"
+              ng-trim="false"
+              ng-list="&#10;">
+    </textarea>
+    <input type="text" ng-model="object.description"/>
+
+</div>
