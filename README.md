@@ -111,7 +111,3 @@ Example:
 </div>
 
 ```
-License
-----
-
-MIT
