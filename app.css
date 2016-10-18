@@ -8,11 +8,31 @@
 }
 .builder, .choices{
 	background-color: gray;
-	min-width: 600px;
-	min-height: 300px;
+	min-width: 597px;
+	height: 300px;
+	overflow-y: scroll;
 	padding: 0;
 	border-radius: 5px;
 	margin-right: 20px;
+
+}
+.builder{
+	background-image: url('bg.png');
+	background-repeat: no-repeat;
+}
+
+.trash{
+	position: fixed;
+	z-index: 30;
+	background-attachment: fixed;
+	bottom: 0;
+	left: 0;
+	/*width: 100px;
+	height: 100px;
+	background-image: url('trash.png');
+	background-repeat: no-repeat;*/
+	list-style: none;
+
 
 }
 .extra-height{
