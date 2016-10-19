@@ -5,7 +5,7 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
         scope: {
             output: '='
         },
-        templateUrl: './formBuilder.html',
+        templateUrl: 'htmlTemplates/formBuilder.html',
         controller: function($scope) {
             //change default settings in this object
             $scope.emptyObject = {
@@ -75,8 +75,40 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
                 htmlTemplate: "htmlTemplates/checkbox.html",
                 popoverTemplateUrl: "popover/checkbox.html",
 
-            }];
+            }, {
+                "type": 'password',
+                "display": '<div class=""><div class="form-group"><label for="" class="col-sm-4 control-label">Password<span ng-show="object.required">*</span></label><div class="col-sm-8"><input type="password" class="form-control" ng-model="object.models" placeholder="placeholder" required="object.required"><p class="help-block">Description</p></div></div></div>',
+                htmlTemplate: "htmlTemplates/password.html",
+                popoverTemplateUrl: "popover/password.html",
 
+            },{
+                "type": 'date',
+                "display": '<div class=""><div class="form-group"><label for="" class="col-sm-4 control-label">Date<span ng-show="object.required">*</span></label><div class="col-sm-8"><input type="date" class="form-control" ng-model="object.models" placeholder="placeholder" required="object.required"><p class="help-block">Description</p></div></div></div>',
+                htmlTemplate: "htmlTemplates/date.html",
+                popoverTemplateUrl: "popover/date.html",
+
+            },{
+                "type": 'dropdown',
+                "display": '<div class="">                    <div class="form-group">                        <label for="" class="col-sm-4 control-label">Dropdown                           <span ng-show="object.required">*</span>                        </label>                        <div class="col-sm-8">                            <select><option value="option">option</option>                            </select>                        </div>                    </div></div>',
+                htmlTemplate: "htmlTemplates/dropdown.html",
+                popoverTemplateUrl: "popover/dropdown.html",
+
+            },{
+                "type": 'checkbox',
+                "display": '<div class=""><div class="form-group"><label for="" class="col-sm-4 control-label">Checkbox<span ng-show="object.required">*</span></label><div class="col-sm-8"><div class="radio"><label><input type="checkbox"  name="group"/>option 1</label><br /><label><input type="checkbox"  name="group"/>option 2</label></div><p class="help-block">{{object.description}}</p></div><br clear="all"/></div>',
+                htmlTemplate: "htmlTemplates/checkbox.html",
+                popoverTemplateUrl: "popover/checkbox.html",
+
+            },{
+                "type": 'checkbox',
+                "display": '<div class=""><div class="form-group"><label for="" class="col-sm-4 control-label">Checkbox<span ng-show="object.required">*</span></label><div class="col-sm-8"><div class="radio"><label><input type="checkbox"  name="group"/>option 1</label><br /><label><input type="checkbox"  name="group"/>option 2</label></div><p class="help-block">{{object.description}}</p></div><br clear="all"/></div>',
+                htmlTemplate: "htmlTemplates/checkbox.html",
+                popoverTemplateUrl: "popover/delete.html",
+
+            }];
+            $scope.delete = function (index) {
+              $scope.model.builder.splice(index, 1);
+            }
             $scope.dragoverCallback = function(event, index, external, type) {
                 $scope.startDrag();
                 return true;
@@ -84,8 +116,12 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
 
             $scope.dropCallback = function(event, index, item, external, type, allowedType) {
                 if (external) {
-                    if (allowedType === 'itemType' && !item.label) return false;
-                    if (allowedType === 'containerType' && !angular.isArray(item)) return false;
+                    if (allowedType === 'itemType' && !item.label) {
+                        return false;
+                    }
+                    if (allowedType === 'containerType' && !angular.isArray(item)) {
+                        return false;
+                    }
                 }
                 $scope.endDrag();
                 return item;
@@ -100,6 +136,7 @@ angular.module('formBuild').directive('ngFormBuilder', function($compile, $rootS
                 }
                 for (i = 0; i < $scope.model.builder.length; i++) {
                     var o2 = JSON.parse(JSON.stringify($scope.emptyObject));
+                    o2.id = i;
                     if (!('required' in $scope.model.builder[i])) {
                         angular.extend($scope.model.builder[i], o2);
                     }

@@ -6,6 +6,7 @@
 .simpleDemo ul[dnd-list] > li {
 	position: relative;
 }
+
 .builder, .choices{
 	background-color: gray;
 	min-width: 597px;
@@ -58,7 +59,8 @@
  * that he's actually moving it.
  */
 .simpleDemo ul[dnd-list] .dndDraggingSource {
-    display: none;
+    /*display: none;*/
+		opacity: 0.5;
 }
 
 /**
@@ -107,4 +109,8 @@
 .simpleDemo ul[dnd-list] li.selected {
     /*background-color: #dff0d8;*/
     /*color: #3c763d;*/
+}
+
+.form-group{
+	margin-top: 15px !important;
 }
