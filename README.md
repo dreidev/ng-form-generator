@@ -1,5 +1,7 @@
 # ng-form-generator
 
+[![npm version](https://badge.fury.io/js/ng-form-generator.svg)](https://badge.fury.io/js/ng-form-generator)
+
 A drag and drop form generator
 
 ng-form-generator is the perfect solution for developers looking to create a form builder for their websites
