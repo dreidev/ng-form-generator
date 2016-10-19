@@ -38,7 +38,8 @@
  * that he's actually moving it.
  */
 .simpleDemo ul[dnd-list] .dndDraggingSource {
-    display: none;
+    /*display: none;*/
+		opacity: 0.5;
 }
 
 /**

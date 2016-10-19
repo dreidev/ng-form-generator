@@ -1,4 +1,5 @@
 # ng-form-generator
+
 A drag and drop form generator
 
 ng-form-generator is the perfect solution for developers looking to create a form builder for their websites
@@ -78,9 +79,11 @@ Example:
   <label>Required Field:</label>
   <input type="checkbox" ng-model="object.required" />
   <input type="text" ng-model="object.description" />
+  <delete />
 </div>
 ```
-
+To add a delete button to your popover template like the one in the demo, just
+add `<delete />` to your popover template
 # Creating an HTML template
 When creating your html template, bind everything to `$scope.object`
 
