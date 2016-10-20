@@ -2,12 +2,10 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Ng-form-generator by Sayegh7</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ng-form-generator</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <meta charset="utf-8">
     <title>Form</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" media="screen" title="no title">
@@ -15,10 +13,6 @@
     <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css" media="screen" title="no title">
     <script src="bower_components/angular/angular.js" charset="utf-8"></script>
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js" charset="utf-8"></script>
-
-
-
-
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js" charset="utf-8"></script>
     <script src="app.js" charset="utf-8"></script>
     <script src="directives/formBuilder.js" charset="utf-8"></script>
@@ -33,35 +27,121 @@
     <script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
     <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js" charset="utf-8"></script>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Ahmed El Sayegh">
+
+
+    <!-- Bootstrap Core CSS -->
+    <!-- Custom CSS -->
+    <link href="heroic-features.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
   </head>
-  <body ng-app="app" ng-controller="SimpleDemoController">
-    <section style="margin:0;padding:5rem 6rem;" class="page-header">
-      <div class="flex">
+  <body ng-app="app" ng-controller="ctrl">
 
-      <div class="">
+      <!-- Navigation -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">ng-form-generator</a>
+              </div>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                      <li>
+                          <a href="#input">Input</a>
+                      </li>
+                      <li>
+                          <a href="#output">Output</a>
+                      </li>
 
-      <h1 class="project-name">Ng-form-generator</h1>
-      <h2 class="project-tagline"></h2>
-      <a href="https://github.com/Sayegh7/ng-form-generator" class="btn">View on GitHub</a>
-      <a href="https://github.com/Sayegh7/ng-form-generator/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/Sayegh7/ng-form-generator/tarball/master" class="btn">Download .tar.gz</a>
-    </div>
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+
+      <!-- Page Content -->
+      <div class="container">
+
+          <!-- Jumbotron Header -->
+          <header class="jumbotron hero-spacer">
+              <h1>ng-form-generator</h1>
+              <p>ng-form-generator is the perfect solution for developers looking to create a form builder for their websites</p>
+              <p><a class="btn btn-primary btn-large">View on github</a><a class="btn btn-primary btn-large">Download .zip</a><a class="btn btn-primary btn-large">Download .tar.gz</a>
+              </p>
+          </header>
 
 
-    </section>
+          <!-- Title -->
+          <div id="input" class="row">
+              <div class="col-lg-12">
+                  <h3>Input</h3>
+              </div>
+          </div>
+          <!-- /.row -->
+          <hr>
 
-    <section class="main-content">
-      <h4 style="color: black;">Drag an item from the list on the right and place it in the list on the left to use it in your form. Once you've placed an item, click it to edit details</h4>
+          <!-- Page Features -->
+          <div class="row text-center">
 
-      <ng-form-builder output="output"></ng-form-builder>
-      <center>
-<br>
-        <h4 style="color: black;">Your output</h4>
-      </center>
+              <div class="col-md-12 col-sm-12 hero-feature">
+                    <ng-form-builder output="output"></ng-form-builder>
+              </div>
 
-      <ng-form-reader input="output" data="data"></ng-form-reader>
 
-    </section>
+
+          </div>
+          <!-- /.row -->
+          <div id="output" class="row">
+              <div class="col-lg-12">
+                  <h3>Output (This is the form you just created)</h3>
+              </div>
+          </div>
+          <hr>
+          <div class="row text-center">
+
+              <div class="col-md-12 col-sm-12 hero-feature">
+                    <ng-form-reader input="output" data="data"></ng-form-reader>
+              </div>
+
+
+
+          </div>
+
+          <!-- Footer -->
+          <footer>
+              <div class="row">
+                  <div class="col-lg-12">
+                      <p>Copyright &copy; Your Website 2014</p>
+                  </div>
+              </div>
+          </footer>
+
+      </div>
+      <!-- /.container -->
+
+      <!-- jQuery -->
 
 
   </body>
+  </html>
