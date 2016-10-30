@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Ability to call custom functions from custom html templates 
 - Creating a form using js
 
-## [1.2.0] - 2016-10-28
+## [1.2.1] - 2016-10-28
 ### Changed
 - Moved repository to dreidev's account
 
