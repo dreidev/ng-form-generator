@@ -1,7 +1,9 @@
 angular.module("app", ["formBuild"]);
-angular.module("app").controller("SimpleDemoController", function($compile, $scope, $sce, builder) {
+angular.module("app").controller("SimpleDemoController", function($scope) {
 
-
+$scope.add = function (x, y) {
+  $scope.res = x + y;
+}
 });
 
 
