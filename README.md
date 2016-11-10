@@ -1,8 +1,12 @@
-# ng-form-generator
+# ng-form-generator 
+
+
+[![npm version](https://badge.fury.io/js/ng-form-generator.svg)](https://badge.fury.io/js/ng-form-generator) [![Bower version](https://badge.fury.io/bo/ng-form-generator.svg)](https://badge.fury.io/bo/ng-form-generator)
 
 A drag and drop form generator
 
 ng-form-generator is the perfect solution for developers looking to create a form builder for their websites
+
 
 # Installation
 In order for ng-form-generator to work it requires angular, bootstrap and ui-bootstrap
@@ -16,6 +20,18 @@ then include it in your project
 ```sh
     <script src="node_modules/ng-form-generator/ng-form-generator.min.js"></script>
     <link rel="stylesheet" href="node_modules/ng-form-generator/ng-form-generator.min.css">
+
+```
+
+or use bower:
+```sh
+$ bower install ng-form-generator
+```
+
+
+```sh
+    <script src="bower_components/ng-form-generator/ng-form-generator.min.js"></script>
+    <link rel="stylesheet" href="bower_components/ng-form-generator/ng-form-generator.min.css">
 
 ```
 
